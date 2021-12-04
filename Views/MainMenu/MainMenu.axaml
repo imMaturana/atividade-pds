@@ -1,0 +1,66 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ds_atividade.Views.MainMenu"
+        Title="Menu Principal">
+  <Window.Styles>
+    <Style Selector="StackPanel.section">
+      <Setter Property="Orientation" Value="Vertical"/>
+      <Setter Property="Margin" Value="15"/>
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="Width" Value="220"/>
+      <Setter Property="Height" Value="40"/>
+      <Setter Property="Margin" Value="20"/>
+      <Setter Property="FontSize" Value="14"/>
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Label.h1">
+      <Setter Property="Margin" Value="20,0"/>
+      <Setter Property="FontSize" Value="26"/>
+    </Style>
+  </Window.Styles>
+  <DockPanel>
+    <Menu DockPanel.Dock="Top" Height="30">
+      <MenuItem Header="Sair">
+        <MenuItem Header="Deslogar"/>
+        <Separator/>
+        <MenuItem Header="Sair"/>
+      </MenuItem>
+    </Menu>
+    <StackPanel Orientation="Vertical" Width="400" DockPanel.Dock="Left" Background="#2e2c49" Classes="user">
+      <StackPanel.Styles>
+        <Style Selector="TextBlock">
+          <Setter Property="Foreground" Value="White"/>
+        </Style>
+      </StackPanel.Styles>
+      <StackPanel Margin="50">
+        <TextBlock FontSize="16" Text="Username" TextAlignment="Center"/>
+      </StackPanel>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"
+                Margin="50" Spacing="60" DockPanel.Dock="Right">
+      <StackPanel Classes="section">
+        <Label Classes="h1">Cadastro</Label>
+        <Button Click="registerUser">Usuário</Button>
+        <Button Click="registerEmployee">Funcionário</Button>
+        <Button Click="registerCustomer">Cliente</Button>
+        <Button Click="registerProduct">Produto</Button>
+        <Button Click="registerSale">Venda</Button>
+      </StackPanel>
+      <!--
+      <StackPanel Classes="section">
+        <Label Classes="h1">Listagem</Label>
+        <Button Click="listUsers">Usuários</Button>
+        <Button Click="listEmployees">Funcionários</Button>
+        <Button Click="listCustomers">Clientes</Button>
+        <Button Click="listProducts">Produtos</Button>
+        <Button Click="listSales">Vendas</Button>
+      </StackPanel>
+      -->
+    </StackPanel>
+  </DockPanel>
+</Window>

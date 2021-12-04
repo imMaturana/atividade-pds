@@ -1,0 +1,9 @@
+{
+    "xmlComplete.schemaMapping": [
+        {
+            "xmlns": "https://github.com/avaloniaui",
+            "xsdUri": "https://raw.githubusercontent.com/rogalmic/vscode-xml-complete/master/test/Avalonia/AvaloniaXamlSchema.xsd",
+            "strict": true // shows errors instead of tips
+        }
+    ]
+}

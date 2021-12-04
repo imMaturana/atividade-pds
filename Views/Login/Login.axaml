@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="450"
+        MaxWidth="400" MaxHeight="450"
+        CanResize="false"
+        x:Class="ds_atividade.Views.Login"
+        Title="Login de Usuário">
+  <DockPanel>
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20" Spacing="30" DockPanel.Dock="Top">
+      <TextBlock FontSize="28" FontWeight="Bold" HorizontalAlignment="Center">
+        Sellware
+      </TextBlock>
+      <StackPanel Orientation="Vertical" Margin="10">
+        <Label>Nome de Usuário</Label>
+        <TextBox x:Name="username" Width="300"/>
+      </StackPanel>
+      <StackPanel Orientation="Vertical" Margin="10">
+        <Label>Senha</Label>
+        <TextBox x:Name="password" Width="300" PasswordChar="*"/>
+      </StackPanel>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+      <Button x:Name="exit" Click="exit" Margin="30,0" Background="#ea4649"
+              HorizontalAlignment="Left">
+        Sair
+      </Button>
+      <Button x:Name="enter" Click="enter" Margin="30,0"
+              HorizontalAlignment="Right">
+        Entrar
+      </Button>
+    </StackPanel>
+  </DockPanel>
+</Window>

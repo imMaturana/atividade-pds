@@ -10,8 +10,8 @@ namespace ds_atividade.Database
         private static string user = "root";
         private static string password = "root";
         private static string database = "bd_system";
-        private static MySqlConnection? connection;
-        private static MySqlCommand? command;
+        private static MySqlConnection connection;
+        private static MySqlCommand command;
 
         public Connection()
         {
@@ -43,7 +43,7 @@ namespace ds_atividade.Database
 
         public void Close()
         {
-            connection?.Close();
+            connection.Close();
         }
     }
 }
