@@ -2,19 +2,24 @@ using System;
 using System.Collections.Generic;
 using ds_atividade.Intefaces;
 using ds_atividade.Database;
-using MySqlConnector;
+using MySql.Data.MySqlClient;
 
 namespace ds_atividade.Models
 {
-    class AddressDAO : IDAO<Endereco>
+    class EnderecoDAO : IDAO<Endereco>
     {
-        private static Connection conn = new Connection();
+        private static Connection conn;
+
+        public EnderecoDAO()
+        {
+            conn = new Connection();
+        }
+
         public void Delete(Endereco t)
         {
             try
             {
-                conn.Query($"DELETE FROM endereco WHERE cod_end = '{t.Id}'")
-                    .ExecuteNonQuery();
+                conn.Query($"DELETE FROM endereco WHERE cod_end = '{t.Id}'").ExecuteNonQuery();
             }
             catch (Exception)
             {
@@ -79,8 +84,7 @@ namespace ds_atividade.Models
         {
             try
             {
-                MySqlCommand query = conn.Query("SELECT * FROM endereco");
-                MySqlDataReader reader = query.ExecuteReader();
+                MySqlDataReader reader = conn.Query("SELECT * FROM endereco").ExecuteReader();
 
                 List<Endereco> enderecos = new List<Endereco>();
 

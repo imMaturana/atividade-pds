@@ -12,7 +12,7 @@ namespace ds_atividade.Models
         public string TelefoneFixo { get; set; }
         public string TelefoneCelular { get; set; }
         public string Email { get; set; }
-        public uint SexoId { get; set; }
-        public uint EnderecoId { get; set; }
+        public Sexo Sexo { get; set; }
+        public Endereco Endereco { get; set; }
     }
 }

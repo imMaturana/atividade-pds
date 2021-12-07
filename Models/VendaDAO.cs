@@ -2,18 +2,25 @@ using System;
 using System.Collections.Generic;
 using ds_atividade.Intefaces;
 using ds_atividade.Database;
-using MySqlConnector;
+using MySql.Data.MySqlClient;
 
 namespace ds_atividade.Models
 {
     class VendaDAO : IDAO<Venda>
     {
-        private static Connection conn = new Connection();
+        private static Connection conn;
+
+        public VendaDAO()
+        {
+            conn = new Connection();
+        }
+
         public void Delete(Venda t)
         {
             try
             {
-                conn.Query($"DELETE FROM venda WHERE cod_vend = '{t.Id}'").ExecuteNonQuery();
+                conn.Query($"DELETE FROM venda WHERE cod_vend = '{t.Id}'")
+                    .ExecuteNonQuery();
             }
             catch (Exception)
             {
@@ -77,7 +84,8 @@ namespace ds_atividade.Models
         {
             try
             {
-                MySqlDataReader reader = conn.Query("SELECT * FROM venda").ExecuteReader();
+                MySqlDataReader reader = conn.Query("SELECT * FROM venda")
+                    .ExecuteReader();
 
                 List<Venda> vendas = new List<Venda>();
 

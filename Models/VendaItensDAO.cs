@@ -2,13 +2,19 @@ using System;
 using System.Collections.Generic;
 using ds_atividade.Intefaces;
 using ds_atividade.Database;
-using MySqlConnector;
+using MySql.Data.MySqlClient;
 
 namespace ds_atividade.Models
 {
     class VendaItensDAO : IDAO<VendaItens>
     {
-        private static Connection conn = new Connection();
+        private static Connection conn;
+
+        public VendaItensDAO()
+        {
+            conn = new Connection();
+        }
+
         public void Delete(VendaItens t)
         {
             try
@@ -59,7 +65,8 @@ namespace ds_atividade.Models
         {
             try
             {
-                conn.Query($"INSERT INTO venda_itens VALUES (null, '{t.Quantidade}', '{t.Valor}', '{t.ValorTotal}', '{t.ProdutoId}', '{t.VendaId}')").ExecuteNonQuery();
+                conn.Query($"INSERT INTO venda_itens VALUES (null, '{t.Quantidade}', '{t.Valor}', '{t.ValorTotal}', '{t.ProdutoId}', '{t.VendaId}')")
+                    .ExecuteNonQuery();
             }
             catch (Exception)
             {

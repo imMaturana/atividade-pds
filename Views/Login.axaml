@@ -22,12 +22,16 @@
       </StackPanel>
     </StackPanel>
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
-      <Button x:Name="exit" Click="exit" Margin="30,0" Background="#ea4649"
-              HorizontalAlignment="Left">
+      <StackPanel.Styles>
+        <Style Selector="Button">
+          <Setter Property="Margin" Value="30,0"/>
+          <Setter Property="Height" Value="30"/>
+        </Style>
+      </StackPanel.Styles>
+      <Button x:Name="exit" Click="exit" Background="#ea4649" HorizontalAlignment="Left">
         Sair
       </Button>
-      <Button x:Name="enter" Click="enter" Margin="30,0"
-              HorizontalAlignment="Right">
+      <Button x:Name="enter" Click="enter" HorizontalAlignment="Right">
         Entrar
       </Button>
     </StackPanel>

@@ -2,18 +2,25 @@ using System;
 using System.Collections.Generic;
 using ds_atividade.Intefaces;
 using ds_atividade.Database;
-using MySqlConnector;
+using MySql.Data.MySqlClient;
 
 namespace ds_atividade.Models
 {
     class ProdutoDAO : IDAO<Produto>
     {
-        private static Connection conn = new Connection();
+        private static Connection conn;
+
+        public ProdutoDAO()
+        {
+            conn = new Connection();
+        }
+
         public void Delete(Produto t)
         {
             try
             {
-                conn.Query($"DELETE FROM produto WHERE cod_prod = '{t.Id}'").ExecuteNonQuery();
+                conn.Query($"DELETE FROM produto WHERE cod_prod = '{t.Id}'")
+                    .ExecuteNonQuery();
             }
             catch (Exception)
             {
@@ -58,7 +65,8 @@ namespace ds_atividade.Models
         {
             try
             {
-                conn.Query($"INSERT INTO produto VALUES (null, '{t.Nome}', '{t.Descricao}', '{t.Marca}', '{t.Valor}'").ExecuteNonQuery();
+                conn.Query($"INSERT INTO produto VALUES (null, '{t.Nome}', '{t.Descricao}', '{t.Marca}', '{t.Valor}'")
+                    .ExecuteNonQuery();
             }
             catch (Exception)
             {

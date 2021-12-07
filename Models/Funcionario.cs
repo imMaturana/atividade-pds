@@ -14,7 +14,7 @@ namespace ds_atividade.Models
         public string TelefoneCelular { get; set; }
         public string Funcao { get; set; }
         public double Salario { get; set; }
-        public uint EnderecoId { get; set; }
-        public uint SexoId { get; set; }
+        public Endereco Endereco { get; set; }
+        public Sexo Sexo { get; set; }
     }
 }

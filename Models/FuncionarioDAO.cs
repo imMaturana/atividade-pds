@@ -2,13 +2,19 @@ using System;
 using System.Collections.Generic;
 using ds_atividade.Intefaces;
 using ds_atividade.Database;
-using MySqlConnector;
+using MySql.Data.MySqlClient;
 
 namespace ds_atividade.Models
 {
-    class EmployeeDAO : IDAO<Funcionario>
+    class FuncionarioDAO : IDAO<Funcionario>
     {
-        private static Connection conn = new Connection();
+        private static Connection conn;
+
+        public FuncionarioDAO()
+        {
+            conn = new Connection();
+        }
+
         public void Delete(Funcionario t)
         {
             try
@@ -45,8 +51,8 @@ namespace ds_atividade.Models
                     TelefoneCelular = reader.GetString("celular_func"),
                     Funcao = reader.GetString("funcao_func"),
                     Salario = reader.GetDouble("salario_func"),
-                    SexoId = reader.GetUInt32("cod_sex_fk"),
-                    EnderecoId = reader.GetUInt32("cod_end_fk"),
+                    Sexo = new SexoDAO().GetById(reader.GetUInt32("cod_sex_fk")),
+                    Endereco = new EnderecoDAO().GetById(reader.GetUInt32("cod_end_fk")),
                 };
 
                 return funcionario;
@@ -65,7 +71,7 @@ namespace ds_atividade.Models
         {
             try
             {
-                conn.Query($"INSERT INTO funcionario VALUES (null, '{t.Nome}', '{t.Cpf}', '{t.Rg}', '{t.DataNascimento.ToString("yyyy-MM-dd")}', '{t.TelefoneFixo}', '{t.Email}', '{t.TelefoneCelular}', '{t.Funcao}', '{t.Salario}', '{t.SexoId}', '{t.EnderecoId}'")
+                conn.Query($"INSERT INTO funcionario VALUES (null, '{t.Nome}', '{t.Cpf}', '{t.Rg}', '{t.DataNascimento.ToString("yyyy-MM-dd")}', '{t.TelefoneFixo}', '{t.Email}', '{t.TelefoneCelular}', '{t.Funcao}', '{t.Salario}', '{t.Sexo.Id}', '{t.Endereco.Id}'")
                     .ExecuteNonQuery();
             }
             catch (Exception)
@@ -86,7 +92,7 @@ namespace ds_atividade.Models
 
                 List<Funcionario> funcionarios = new List<Funcionario>();
 
-                while (reader.Read()) funcionarios.Add(new Funcionario
+                while (reader.Read()) funcionarios.Add(new Funcionario()
                 {
                     Id = reader.GetUInt32("cod_func"),
                     Nome = reader.GetString("nome_func"),
@@ -98,8 +104,8 @@ namespace ds_atividade.Models
                     TelefoneCelular = reader.GetString("celular_func"),
                     Funcao = reader.GetString("funcao_func"),
                     Salario = reader.GetDouble("salario_func"),
-                    SexoId = reader.GetUInt32("cod_sex_func"),
-                    EnderecoId = reader.GetUInt32("cod_end_fk"),
+                    Sexo = new SexoDAO().GetById(reader.GetUInt32("cod_sex_fk")),
+                    Endereco = new EnderecoDAO().GetById(reader.GetUInt32("cod_func_fk")),
                 });
 
                 return funcionarios;
@@ -118,7 +124,7 @@ namespace ds_atividade.Models
         {
             try
             {
-                conn.Query($"UPDATE funcionario SET nome_func = '{t.Nome}', cpf_func = '{t.Cpf}', rg_func = '{t.Rg}', datanasc_func = '{t.DataNascimento.ToString("yyyy-MM-dd")}', telefone_func = '{t.TelefoneFixo}', email_func = '{t.Email}', celular_func = '{t.TelefoneCelular}', funcao_func = '{t.Funcao}', salario_func = '{t.Salario}', cod_sex_fk = '{t.SexoId}', cod_end_fk = '{t.EnderecoId}' WHERE cod_func = '{t.Id}'")
+                conn.Query($"UPDATE funcionario SET nome_func = '{t.Nome}', cpf_func = '{t.Cpf}', rg_func = '{t.Rg}', datanasc_func = '{t.DataNascimento.ToString("yyyy-MM-dd")}', telefone_func = '{t.TelefoneFixo}', email_func = '{t.Email}', celular_func = '{t.TelefoneCelular}', funcao_func = '{t.Funcao}', salario_func = '{t.Salario}', cod_sex_fk = '{t.Sexo.Id}', cod_end_fk = '{t.Endereco.Id}' WHERE cod_func = '{t.Id}'")
                     .ExecuteNonQuery();
             }
             catch (Exception)

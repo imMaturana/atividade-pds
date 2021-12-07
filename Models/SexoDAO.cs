@@ -2,18 +2,24 @@ using System;
 using System.Collections.Generic;
 using ds_atividade.Intefaces;
 using ds_atividade.Database;
-using MySqlConnector;
+using MySql.Data.MySqlClient;
 
 namespace ds_atividade.Models
 {
     class SexoDAO : IDAO<Sexo>
     {
-        private static Connection conn = new Connection();
+        private static Connection conn;
+
+        public SexoDAO()
+        {
+            conn = new Connection();
+        }
         public void Delete(Sexo t)
         {
             try
             {
-                conn.Query($"DELETE FROM sexo WHERE cod_sex = '{t.Id}'").ExecuteNonQuery();
+                conn.Query($"DELETE FROM sexo WHERE cod_sex = '{t.Id}'")
+                    .ExecuteNonQuery();
             }
             catch (Exception)
             {
@@ -55,7 +61,8 @@ namespace ds_atividade.Models
         {
             try
             {
-                conn.Query($"INSERT INTO sexo VALUES (null, '{t.Nome}')").ExecuteNonQuery();
+                conn.Query($"INSERT INTO sexo VALUES (null, '{t.Nome}')")
+                    .ExecuteNonQuery();
             }
             catch (Exception)
             {
@@ -86,7 +93,8 @@ namespace ds_atividade.Models
         {
             try
             {
-                conn.Query($"UPDATE sexo SET nome = '{t.Nome}' WHERE cod_sex = '{t.Id}'").ExecuteNonQuery();
+                conn.Query($"UPDATE sexo SET nome = '{t.Nome}' WHERE cod_sex = '{t.Id}'")
+                    .ExecuteNonQuery();
             }
             catch (Exception)
             {

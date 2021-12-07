@@ -5,6 +5,6 @@ namespace ds_atividade.Models
         public uint Id { get; set; }
         public string Nome { get; set; }
         public string Senha { get; set; }
-        public uint FuncionarioId { get; set; }
+        public Funcionario Funcionario { get; set; }
     }
 }

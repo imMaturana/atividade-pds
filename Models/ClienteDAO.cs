@@ -2,13 +2,19 @@ using System;
 using System.Collections.Generic;
 using ds_atividade.Intefaces;
 using ds_atividade.Database;
-using MySqlConnector;
+using MySql.Data.MySqlClient;
 
 namespace ds_atividade.Models
 {
     class ClienteDAO : IDAO<Cliente>
     {
-        private static Connection conn = new Connection();
+        private static Connection conn;
+
+        public ClienteDAO()
+        {
+            conn = new Connection();
+        }
+
         public void Delete(Cliente t)
         {
             try
@@ -46,8 +52,8 @@ namespace ds_atividade.Models
                         TelefoneFixo = reader.GetString("telefone_fixo_cli"),
                         TelefoneCelular = reader.GetString("telefone_celular_cli"),
                         Email = reader.GetString("email_cli"),
-                        SexoId = reader.GetUInt32("cod_sex_fk"),
-                        EnderecoId = reader.GetUInt32("cod_end_fk"),
+                        Sexo = new SexoDAO().GetById(reader.GetUInt32("cod_sex_fk")),
+                        Endereco = new EnderecoDAO().GetById(reader.GetUInt32("cod_end_fk")),
                     };
                 }
 
@@ -67,7 +73,7 @@ namespace ds_atividade.Models
         {
             try
             {
-                conn.Query($"INSERT INTO cliente VALUES (null, '{t.Nome}', '{t.Cpf}', '{t.Rg}', '{t.DataNascimento.ToString("yyyy-MM-dd")}', '{t.TelefoneFixo}', '{t.TelefoneCelular}', '{t.Email}', '{t.SexoId}', '{t.EnderecoId}')")
+                conn.Query($"INSERT INTO cliente VALUES (null, '{t.Nome}', '{t.Cpf}', '{t.Rg}', '{t.DataNascimento.ToString("yyyy-MM-dd")}', '{t.TelefoneFixo}', '{t.TelefoneCelular}', '{t.Email}', '{t.Sexo.Id}', '{t.Endereco.Id}')")
                     .ExecuteNonQuery();
             }
             catch (Exception)
@@ -100,8 +106,8 @@ namespace ds_atividade.Models
                         TelefoneFixo = reader.GetString("telefone_fixo_cli"),
                         TelefoneCelular = reader.GetString("telefone_celular_cli"),
                         Email = reader.GetString("email_cli"),
-                        SexoId = reader.GetUInt32("cod_sex_fk"),
-                        EnderecoId = reader.GetUInt32("cod_end_fk"),
+                        Sexo = new SexoDAO().GetById(reader.GetUInt32("cod_sex_fk")),
+                        Endereco = new EnderecoDAO().GetById(reader.GetUInt32("cod_end_fk")),
                     });
                 }
 
@@ -121,7 +127,7 @@ namespace ds_atividade.Models
         {
             try
             {
-                conn.Query($"UPDATE cliente SET nome_cli = '{t.Nome}', cpf_cli = '{t.Cpf}', rg_cli = '{t.Rg}', datanasc_cli = '{t.DataNascimento.ToString("yyyy-MM-dd")}', telefone_fixo_cli = '{t.TelefoneFixo}', telefone_celular_cli = '{t.TelefoneCelular}', email_cli = '{t.Email}', cod_sex_fk = '{t.SexoId}', cod_end_fk = '{t.EnderecoId}'")
+                conn.Query($"UPDATE cliente SET nome_cli = '{t.Nome}', cpf_cli = '{t.Cpf}', rg_cli = '{t.Rg}', datanasc_cli = '{t.DataNascimento.ToString("yyyy-MM-dd")}', telefone_fixo_cli = '{t.TelefoneFixo}', telefone_celular_cli = '{t.TelefoneCelular}', email_cli = '{t.Email}', cod_sex_fk = '{t.Sexo.Id}', cod_end_fk = '{t.Endereco.Id}'")
                     .ExecuteNonQuery();
             }
             catch (Exception)

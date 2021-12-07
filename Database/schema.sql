@@ -8,6 +8,9 @@ CREATE TABLE sexo (
   PRIMARY KEY (cod_sex)
 );
 
+INSERT INTO sexo VALUES (null, 'Masculino');
+INSERT INTO sexo VALUES (null, 'Feminino');
+
 CREATE TABLE endereco (
   cod_end INT NOT NULL AUTO_INCREMENT,
   rua_end VARCHAR(300) NULL DEFAULT NULL,
@@ -17,6 +20,14 @@ CREATE TABLE endereco (
   estado_end VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (cod_end)
 );
+
+INSERT INTO endereco  VALUES (null, 'Rua Rio Grande do Norte', '5573', 'Setor 2', 'Jaru', 'Rondônia');
+INSERT INTO endereco VALUES (null, 'Av. Padre Adolpho Rolh', '1223', 'Setor 4', 'Jaru', 'Rondônia');
+INSERT INTO endereco VALUES (null, 'Av. Rio Branco', '3864', 'Setor 1', 'Jaru', 'Rondônia');
+INSERT INTO endereco VALUES (null, 'Rua  Florianópolis', '3062', 'Setor 1', 'Jaru', 'Rondônia');
+INSERT INTO endereco VALUES (null, 'Rua 7 de Setembro', '4501', 'Jardim dos Estados', 'Jaru', 'Rondônia');
+INSERT INTO endereco VALUES (null, 'Rua Ceará', '1563', 'Setor 3', 'Jaru', 'Rondônia');
+INSERT INTO endereco VALUES (null, 'Avenida JK 2048', '5663', 'Centro', 'Jaru', 'Rondônia');
 
 CREATE TABLE funcionario (
   cod_func INT NOT NULL AUTO_INCREMENT,
@@ -41,6 +52,10 @@ CREATE TABLE funcionario (
     FOREIGN KEY (cod_end_fk)
     REFERENCES endereco (cod_end)
 );
+
+INSERT INTO funcionario VALUES (null, 'Gustavo Henrique dos Santos', '12345678910', '1020304050', '1999-05-17', '111222333', 'gustavo.henrique@gmail.com', '6969696969', 'Vendedor', '1780.00', 1, 1);
+INSERT INTO funcionario VALUES (null, 'Ana Gabrielly de Souza', '01200340056', '1122334455', '2001-10-27', '102030405', 'anagaby.za@disroot.org', '112033405560', 'Vendedor', '1822.10', 2, 2);
+INSERT INTO funcionario VALUES (null, 'Davi Gomes Soares', '01020304079', '1111111111', '2003-07-09', '9090909090', 'davigomer@outlook.com', '455667788990', 'Vendedor', '1678.26', 1, 3);
 
 CREATE TABLE cliente (
   cod_cli INT NOT NULL AUTO_INCREMENT,

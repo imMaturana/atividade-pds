@@ -9,10 +9,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.10" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.10" />
     <PackageReference Include="Avalonia.Desktop" Version="0.10.10" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.10" />
+    <PackageReference Include="Material.Avalonia" Version="2.5.0" />
     <PackageReference Include="MessageBox.Avalonia" Version="1.6.0" />
-    <PackageReference Include="MySqlConnector" Version="2.1.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.27" />
    </ItemGroup>
 </Project>

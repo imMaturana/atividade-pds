@@ -2,11 +2,11 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace AvaloniaAppTemplate.Namespace
+namespace ds_atividade.Views
 {
-    public partial class Template : Window
+    public partial class CadastroFuncionario : Window
     {
-        public Template()
+        public CadastroFuncionario()
         {
             InitializeComponent();
 #if DEBUG

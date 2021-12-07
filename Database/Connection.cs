@@ -1,5 +1,5 @@
 using System;
-using MySqlConnector;
+using MySql.Data.MySqlClient;
 
 namespace ds_atividade.Database
 {
@@ -30,7 +30,7 @@ namespace ds_atividade.Database
         {
             try
             {
-                command = new MySqlCommand();
+                command = connection.CreateCommand();
                 command.CommandType = System.Data.CommandType.Text;
                 command.CommandText = sql;
                 return command;

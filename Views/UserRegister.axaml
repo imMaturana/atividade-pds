@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        MinWidth="1000" MinHeight="700"
         x:Class="ds_atividade.Views.UserRegister"
         Title="Cadastro de Usuário">
   <Window.Styles>
@@ -30,42 +31,40 @@
         <MenuItem Header="Sair"/>
       </MenuItem>
     </Menu>
-    <StackPanel Orientation="Vertical" Width="400" DockPanel.Dock="Left" Background="#2e2c49" Classes="user">
+    <StackPanel Orientation="Vertical" Margin="10" Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top">
       <StackPanel.Styles>
-        <Style Selector="TextBlock">
-          <Setter Property="Foreground" Value="White"/>
+        <Style Selector="StackPanel">
+          <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
       </StackPanel.Styles>
-      <StackPanel Margin="50">
-        <TextBlock FontSize="16" Text="Username" TextAlignment="Center"/>
+      <StackPanel Orientation="Horizontal" Spacing="50">
+        <StackPanel>
+          <Label>Nome de Usuário</Label>
+          <TextBox x:Name="username" Width="300"/>
+        </StackPanel>
+        <StackPanel>
+          <Label>Funcionário</Label>
+          <ComboBox x:Name="employees" SelectedIndex="0" Width="350">
+            <ComboBox.ItemTemplate>
+              <DataTemplate>
+                <TextBlock Text="{Binding Nome}"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+      </StackPanel>
+      <StackPanel>
+        <Label>Senha</Label>
+        <TextBox x:Name="password" Width="700" PasswordChar="*"/>
+      </StackPanel>
+      <StackPanel>
+        <Label>Confirmar senha</Label>
+        <TextBox x:Name="confirmPassword" Width="700" PasswordChar="*"/>
       </StackPanel>
     </StackPanel>
-    <StackPanel Orientation="Horizontal" Margin="50" Spacing="50" HorizontalAlignment="Center" DockPanel.Dock="Right">
-      <DockPanel>
-        <StackPanel DockPanel.Dock="Top">
-          <StackPanel.Styles>
-            <Style Selector="StackPanel">
-              <Setter Property="HorizontalAlignment" Value="Left"/>
-            </Style>
-          </StackPanel.Styles>
-          <StackPanel>
-            <Label>Nome de Usuário</Label>
-            <TextBox Width="400"/>
-          </StackPanel>
-          <StackPanel>
-            <Label>Senha</Label>
-            <TextBox Width="400"/>
-          </StackPanel>
-          <StackPanel>
-            <Label>Confirmar senha</Label>
-            <TextBox Width="400"/>
-          </StackPanel>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
-          <Button>Voltar</Button>
-          <Button>Salvar</Button>
-        </StackPanel>
-      </DockPanel>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
+      <Button Click="back">Voltar</Button>
+      <Button Click="save">Salvar</Button>
     </StackPanel>
   </DockPanel>
 </Window>

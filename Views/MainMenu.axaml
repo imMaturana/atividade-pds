@@ -42,25 +42,23 @@
       </StackPanel>
     </StackPanel>
     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"
-                Margin="50" Spacing="60" DockPanel.Dock="Right">
+                Margin="20" Spacing="20" DockPanel.Dock="Right">
       <StackPanel Classes="section">
-        <Label Classes="h1">Cadastro</Label>
-        <Button Click="registerUser">Usuário</Button>
-        <Button Click="registerEmployee">Funcionário</Button>
-        <Button Click="registerCustomer">Cliente</Button>
-        <Button Click="registerProduct">Produto</Button>
-        <Button Click="registerSale">Venda</Button>
+        <Label Classes="h1">Ações</Label>
+        <Button Click="executeSale">Executar Venda</Button>
+        <Button Click="registerUser">Cadastrar Usuário</Button>
+        <Button Click="registerEmployee">Cadastrar Funcionário</Button>
+        <Button Click="registerCustomer">Cadastrar Cliente</Button>
+        <Button Click="registerProduct">Cadastrar Produto</Button>
       </StackPanel>
-      <!--
       <StackPanel Classes="section">
         <Label Classes="h1">Listagem</Label>
+        <Button Click="listSales">Vendas</Button>
         <Button Click="listUsers">Usuários</Button>
         <Button Click="listEmployees">Funcionários</Button>
         <Button Click="listCustomers">Clientes</Button>
         <Button Click="listProducts">Produtos</Button>
-        <Button Click="listSales">Vendas</Button>
       </StackPanel>
-      -->
     </StackPanel>
   </DockPanel>
 </Window>
